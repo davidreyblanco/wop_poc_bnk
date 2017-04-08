@@ -1,0 +1,9 @@
+id;type;name
+1;addon;TPV
+2;main;Factoring
+3;main;Deposit
+4;addon;Account/Card
+5;main;Startup ICO
+6;main;Leasing
+7;main;Renting
+8;main;Loan

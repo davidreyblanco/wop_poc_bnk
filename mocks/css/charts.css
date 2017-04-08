@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.chart_wooda
+{
+	width: 200px;
+	height: 150px;
+}
+
+#chart .c3-line-A {
+  stroke-width: 2px;
+}
