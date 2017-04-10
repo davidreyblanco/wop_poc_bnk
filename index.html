@@ -1010,15 +1010,18 @@ display_company = function (cif,handler){
 		    		scope.company = item_data;
 		    		WOODA.company= scope.company;
 		    	
-		    		var propension_label = item_data.Propension === '1' ? 'Muy Alta' : item_data.Propension === '2'  ? 'Alta' : (item_data.Propension === '3'  ? 'Baja' : 'Muy Baja');
-		    		var risk_style = (item_data.Propension === '1' || item_data.Propension === '2') ? 'success' : item_data.Propension === '3' ? 'active_box_company' : 'warning';
+		    	  item_data.Propension_c = item_data.Propension[0]; 
+		    		var propension_label = item_data.Propension_c === '1' ? 'Muy Alta' : item_data.Propension_c === '2'  ? 'Alta' : (item_data.Propension_c === '3'  ? 'Baja' : 'Muy Baja');
+		    		var risk_style = (item_data.Propension_c === '1' || item_data.Propension_c === '2') ? 'success' : item_data.Propension_c === '3' ? 'active_box_company' : 'warning';
 		    		
 		    		scope.company.propensity_score = propension_label;
 		    		$('#company_propension_box').removeClass('success').removeClass('warning').removeClass("active").removeClass('danger');
 		    		$('#company_propension_box').removeClass('success').removeClass('warning').removeClass("active").removeClass('danger').addClass(risk_style);
 
-		    		var risk_label = item_data.Propension === '1' ? 'Bajo' : item_data.Propension === '2'  ? 'Medio' :  'Alta';
-		    		risk_style = (item_data.Propension === '3' ) ? 'success' : item_data.Propension === '2' ? 'active_box_company' : 'warning';
+            // ---- RISK BOX
+            item_data.risk_score_c = item_data.IPE[0]; // First character
+		    		var risk_label = item_data.risk_score_c === '1' ? 'Bajo' : item_data.risk_score_c === '2'  ? 'Medio' :  'Alta';
+		    		risk_style = (item_data.risk_score_c === '1' ) ? 'success' : item_data.risk_score_c === '2' ? 'active_box_company' : 'warning';
 
 		    		scope.company.risk_score = risk_label;
 		    		$('#company_risk_box').removeClass('success').removeClass('warning').removeClass("active").removeClass('danger');
