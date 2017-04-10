@@ -1020,7 +1020,7 @@ display_company = function (cif,handler){
 
             // ---- RISK BOX
             item_data.risk_score_c = item_data.IPE[0]; // First character
-		    		var risk_label = item_data.risk_score_c === '1' ? 'Bajo' : item_data.risk_score_c === '2'  ? 'Medio' :  'Alta';
+		    		var risk_label = item_data.risk_score_c === '1' ? 'Bajo' : item_data.risk_score_c === '2'  ? 'Medio' :  'Alto';
 		    		risk_style = (item_data.risk_score_c === '1' ) ? 'success' : item_data.risk_score_c === '2' ? 'active_box_company' : 'warning';
 
 		    		scope.company.risk_score = risk_label;
