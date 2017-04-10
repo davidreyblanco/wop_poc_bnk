@@ -82,7 +82,7 @@ function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$i
 		}
 		else
 		{
-			$query = 'SELECT * from companies where id_office="'.$id_office.'"';
+			$query = 'SELECT *,if(volumen_negocio="<700k",1,if(volumen_negocio="700k-1.200K",2,if(volumen_negocio="1.200k-3.000k",3,4))) as volumen_negocio_clases from companies where id_office="'.$id_office.'"';
 		}
 		
 		if ($in_pipeline)
@@ -219,7 +219,10 @@ function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$i
 				{
 						case 'R': $query .= " ORDER by IPE " . (($oc == "A") ? "ASC":"DESC"); break;
 						case 'M': $query .= " ORDER by Municipio  " . (($oc == "A") ? "ASC":"DESC"); break;
-						case 'V': $query .= " ORDER by volumen_negocio " . (($oc == "A") ? "ASC":"DESC"); break;
+						case 'V': 
+									//$query .= " ORDER by ventas_2015,ventas_2014,ventas_2013,ventas_2012 " . (($oc == "A") ? "ASC":"DESC"); break;
+									$query .= " ORDER by volumen_negocio_clases " . (($oc == "A") ? "ASC":"DESC"); break;
+				    
 						case 'P': $query .= " ORDER by Propension " . (($oc == "A") ? "ASC":"DESC"); break;
 						case 'N':
 						default: $query .= " ORDER by Propension DESC"; break;
@@ -229,7 +232,7 @@ function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$i
 			
 			$query .= ';';
 	
-			//print($query);//exit;
+//			print($query);exit;
 			$res_db = $link->query($query);
 
 			if ($is_count === true)
