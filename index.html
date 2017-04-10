@@ -1408,6 +1408,13 @@ var customization = spotfire.webPlayer.Customization();  //Optional configuratio
 
 $( document ).ready(function() {
 			show_view('login');
+			if (location.hostname === 'www.efxlab.com' && document.URL.indexOf('prepro') === -1)
+			{
+        // Production environment - Clear username & pass			  
+  		  $('#userName').val('');
+	  	  $('#userPassword').val('');
+			}
+
 			/*
 			// Init Spotfire
 			var c_serverUrl = "https://spotfire.cloud.tibco.com/spotfire/wp/";
