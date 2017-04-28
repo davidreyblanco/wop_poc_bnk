@@ -55,7 +55,7 @@ function db_get_company_data($cif)
 			
 			foreach($data_result as $k => $v)
 			{
-				$data_result[$k] = trim(utf8_encode($v));
+				$data_result[$k] = trim(mb_detect_encoding($v,'UTF-8') ? utf8_encode($v) : $v);
 			}
 			$result = $data_result;
 			mysqli_close($link);
@@ -92,7 +92,7 @@ function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$i
 		else
 		{
 			$query .= " AND in_pipe='NO' ";
-			//$query .= " AND length(RESULT_DE_EXPLOT_2014) > 2 ";
+			$query .= " AND (length(Resultado_neto_2015) > 0) ";
 		}
 			
 			$filter = '';	
@@ -282,8 +282,12 @@ function db_lookup_near($x,$y,$id_office,$distance)
 		if ($link)
 		{
 				//$query = 'SELECT CIF,nombre_empresa,tel_fono,x,y from companies where id_office="'.$id_office.'" LIMIT 300;';
-				$query = 'SELECT CIF,nombre_empresa,tel_fono,x,y,ScoreExport,in_pipe from companies;';
-				
+				$query = 'SELECT CIF,nombre_empresa,tel_fono,x,y,ScoreExport,in_pipe from companies';
+				if ($id_office <> '')
+				{
+					$query .= ' WHERE id_office = '.$id_office;
+				}
+				$query .= ';';
 				//print($query);
 				$res_db = $link->query($query);
 				while($data_result = $res_db->fetch_assoc())

@@ -65,6 +65,7 @@ get_suggestions = function (handler,order_list,order_criteria,ipe_filter_criteri
 		{
 			url += '&order_list='+order_list+'&order_criteria='+order_criteria;
 			url += '&ipe_filter_criteria='+ipe_filter_criteria+'&export_filter_criteria='+export_filter_criteria+'&propension_filter_criteria='+propension_filter_criteria+'&name_filter=' + name_filter;
+			url += '&page_id='+page_id;
 		}
 		call_service(url,handler);
 	}
@@ -78,7 +79,8 @@ get_pipeline = function (handler,order_list,order_criteria,visited_criteria,inte
 		if (order_list !== undefined)
 		{
 			url += '&order_list='+order_list+'&order_criteria='+order_criteria;
-			url += '&visited_criteria='+visited_criteria+'&interes_criteria='+interes_criteria+'&name_filter=' + name_filter;;
+			url += '&visited_criteria='+visited_criteria+'&interes_criteria='+interes_criteria+'&name_filter=' + name_filter;
+			url += '&page_id='+page_id;
 		}
 		call_service(url,handler);
 	}
@@ -233,11 +235,25 @@ refresh_pipeline = function()
 		var visited_criteria = "SI_" + ($('#modalPipeline #visited_1').is(":checked") ? 1:0) + "," + "NO_" + ($('#modalPipeline #visited_2').is(":checked")?1:0);
 		var interes_criteria = "SI_" + ($('#modalPipeline #interes_1').is(":checked") ? 1:0) + "," + "NO_" + ($('#modalPipeline #interes_2').is(":checked")?1:0) + "," + "VACIO_" + ($('#modalPipeline #interes_3').is(":checked")?1:0);
 		var name_filter = $('#modalPipeline #filtro_nombre').val().trim();
-		
+		var page_num = parseInt($('#pipe_page_num').text()) - 1;
 		get_pipeline(function (data) 
 			{
 					$('.logged_in').css('display','block');															
 					var item_list = JSON.parse(data);
+					// --- Pagination
+					if (item_list.data.length == 0)
+					{
+						$('#pipe_page_next').css('display','none');// Hide PREV Button
+					}
+					if (page_num == 0)
+					{
+						$('#pipe_page_prev').css('display','none');// Hide PREV Button
+						$('#pipe_page_next').css('display','block');// Hide PREV Button
+					}
+					else
+					{
+						$('#pipe_page_prev').css('display','block');// Hide PREV Button
+					}
 				    	var scope = angular.element($("#pipeline_view")).scope();
 				    	scope.$apply(function(){
 				    		
@@ -270,7 +286,7 @@ refresh_pipeline = function()
 	*/
 				    	    //scope.names = suggestion_list;
 				    	});
-			},order_list,order_criteria,visited_criteria,interes_criteria,name_filter,0);	
+			},order_list,order_criteria,visited_criteria,interes_criteria,name_filter,page_num);	
 	}
 }
 
@@ -287,15 +303,32 @@ refresh_suggestions = function()
 			var propension_filter_criteria = "1_" + ($('#modalAddSuggestion #propension_1').is(":checked") ? 1:0) + "," + "2_" + ($('#modalAddSuggestion #propension_2').is(":checked") ? 1:0) + "," + "3_" + ($('#modalAddSuggestion #propension_3').is(":checked") ? 1:0);
 			var name_filter = $('#modalAddSuggestion #filtro_nombre').val().trim();
 			
-					$('#filter_suggested_pipe').button('loading');
-
+			$('#filter_suggested_pipe').button('loading');
+			
+			var page_num = parseInt($('#suggestion_page_num').text()) - 1;
 
 			get_suggestions(function (data) 
 			{
 					$('#filter_suggested_pipe').button('reset');
-						var suggestions = JSON.parse(data);
-						var scope = angular.element($("#suggested_view")).scope();
-						scope.$apply(function(){
+					var suggestions = JSON.parse(data);
+					
+					// --- Pagination
+					if (suggestions.data.length == 0)
+					{
+						$('#suggestion_page_next').css('display','none');// Hide PREV Button
+					}
+					if (page_num == 0)
+					{
+						$('#suggestion_page_prev').css('display','none');// Hide PREV Button
+						$('#suggestion_page_next').css('display','block');// Hide PREV Button
+					}
+					else
+					{
+						$('#suggestion_page_prev').css('display','block');// Hide PREV Button
+					}
+					
+					var scope = angular.element($("#suggested_view")).scope();
+					scope.$apply(function(){
 										//suggestions = get_reason_codes(suggestions);
 							    		scope.suggestion_list = suggestions.data.slice(0,100);
 							    		// Apa�o para vincular los comportamientos
@@ -337,7 +370,7 @@ refresh_suggestions = function()
 								    		
 							    	    }, 1000);
 							    	});
-					},order_list,order_criteria,ipe_filter_criteria,export_filter_criteria,propension_filter_criteria,name_filter,0);
+					},order_list,order_criteria,ipe_filter_criteria,export_filter_criteria,propension_filter_criteria,name_filter,page_num);
 	}
 }
 
@@ -439,6 +472,40 @@ update_pipe_status = function(pipe_status,callback)
 	}
 };
 
+pagination_pipe_prev = function ()
+{
+	var page_num = parseInt($('#pipe_page_num').text());
+	if (page_num > 1)
+	{
+		$('#pipe_page_num').text(page_num - 1);
+		refresh_pipeline();
+	}
+};
+
+pagination_pipe_next = function ()
+{
+	var page_num = parseInt($('#pipe_page_num').text());
+	$('#pipe_page_num').text(page_num + 1);
+	refresh_pipeline();
+};
+
+
+pagination_suggestion_prev = function ()
+{
+	var page_num = parseInt($('#suggestion_page_num').text());
+	if (page_num > 1)
+	{
+		$('#suggestion_page_num').text(page_num - 1);
+		refresh_suggestions();
+	}
+};
+
+pagination_suggestion_next = function ()
+{
+	var page_num = parseInt($('#suggestion_page_num').text());
+	$('#suggestion_page_num').text(page_num + 1);
+	refresh_suggestions();
+}
 refresh_status_company = function(use_company_data)
 {
 	var current_status_v = use_company_data !== undefined ? WOODA.company.visit: $('#company_visited_flag').text().trim();

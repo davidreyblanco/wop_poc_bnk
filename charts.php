@@ -89,7 +89,7 @@ $v_2015 = $r['ACTIVO_NO_CORRIENTE_2015'] === 0 ? 'none' : 'block';
 </head>
 <body>
 
-<h5> <b>An&aacute;lisis Financiero de la empresa</b> </h5>
+<h5> <b>An&aacute;lisis Financiero de la Empresa</b> </h5>
 
 
 <table class='tabla-charts'>

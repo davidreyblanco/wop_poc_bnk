@@ -198,7 +198,7 @@
         <p><strong>Campo: </strong>
         <select id='select_order_field'>
           		<option value="N">Sin orden</option>
-                <option value="P" selected='true'>Propension</option>
+                <option value="P" selected='true'>Propensi&oacute;n</option>
                 <option value="R">Riesgo</option>
                 <option value="M">Municipio</option>
                 <option value="V">Volumen de negocio</option>
@@ -450,7 +450,7 @@
                         <th class='suggestions_header_title'>Municipio<span class=""></span></th>
                         <th class='suggestions_header_title' style='width:70px;'>Volumen negocio<span class=""></span></th>
                         <th class='suggestions_header_title'>Import/Export<span class=""></span></th>
-                        <th class='suggestions_header_title'>Propension<span class=""></span></th>
+                        <th class='suggestions_header_title'>Propensi&oacute;n<span class=""></span></th>
                         <th class='suggestions_header_title'  >Accion</th>
 
                     </tr> 
@@ -478,24 +478,20 @@
             
               </div>
               <div class="panel-footer">
-                <!--
                 <div class="row">
-                  <div class="col col-xs-4">Page 1 of 3
+                  
+                  <div class="col col-xs-4">P&aacute;gina <span id='suggestion_page_num'>1</span> 
                   </div>
-                  <div class="col col-xs-8">
-                    <ul class="pagination hidden-xs pull-right">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                    </ul>
-                    <ul class="pagination visible-xs pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
+                  <div class="col col-xs-6">
+                    <ul class="pagination  pull-right">
+                        <li id='suggestion_page_prev' style='font-size: 0.8em'><a href="javascript:pagination_suggestion_prev();">Anterior</a></li>
+                        <li id='suggestion_page_next' style='font-size: 0.8em'><a href="javascript:pagination_suggestion_next();">Siguiente</a></li>
                     </ul>
                   </div>
+                  -
                 </div>
-                -->
               </div>
+
             </div>
     <!-- EO Nuevo bloque -->
     
@@ -525,7 +521,7 @@
 				 <strong>{{company.nombre_empresa}}</strong>
 				 <a href="#"><i data-toggle="tooltip" title="Informacion de Contacto y Localizacion" data-placement="bottom" onclick="switch_company_view('company_maps_view')" class="fa fa-3x fa-fw pull-right fa-info-circle button_top_items"></i></a>
 				 <br />CIF: {{company.CIF}}<br /> 
-				 <a href="tel:{{company.tel_fono}}"><abbr title="Phone">Telefono: </abbr> {{company.tel_fono}}<br/></a>
+				 <a href="tel:{{company.tel_fono}}"><abbr title="Phone">Tel&eacute;fono: </abbr> {{company.tel_fono}}<br/></a>
 				 <span style='margin-top:5px;'></span><br/>
 				 <small><strong>CNAE:</strong> {{company.cnae09}} - {{company.cnae2009_4dig_codd}}</small><br /> 
 				 <small ><abbr title="Phone">Empleados: </abbr> {{company.empleados}}</small><br/>
@@ -543,7 +539,7 @@
 						</td>
 					 
 						<td colspan='2' id='company_propension_box' class=" ajusta">
-							<div class="bg-text label_box_company" data-bg-text="Propension">{{company.propensity_score}}</div>
+							<div class="bg-text label_box_company" data-bg-text="Propensi&oacute;n">{{company.propensity_score}}</div>
 						</td>
 					</tr>
 <!-- 
@@ -560,6 +556,7 @@
 				</tbody>
 			</table>
 				</div>
+				<!--
 				<div class="panel-footer">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -570,16 +567,12 @@
 						<div style='height:18px' class="panel-body"  data-ng-if="$index < 3">
 							<span  data-ng-click='show_company($event);' class='nearby_item' data-cif='{{x.CIF}}' >
 							{{x.nombre_empresa}}</span>
-							
 						</div>
 					</span>
-<!-- 
-					<div class="panel-footer">
-						+ More recommendations
-					</div>
- -->
-			</div>
-				</div>
+
+			  </div>
+  			</div>
+			-->
 			</div>
                    
                   </div>
@@ -739,7 +732,7 @@
 		  <span class='contact_data_item'>CALLE {{company.calle}} {{company.n_mero}} {{company.resto}}</span><br>
 		  <span class='contact_data_item'>{{company.municipio}} ({{company.provincia}}) - Codigo Postal: {{company.codigo_postal}}</span><br>
 		   <span class='contact_data_item'><strong>Persona de contacto: </strong>{{company.nmb_conse_direc}} <strong> Cargo:</strong>{{company.cod_conse_dire}}</span><br/>
-		   <a href="tel:{{company.tel_fono}}"><abbr title="Phone">Telefono: </abbr> {{company.tel_fono}}<br/></a>
+		   <a href="tel:{{company.tel_fono}}"><abbr title="Phone">Tel&eacute;fono: </abbr> {{company.tel_fono}}<br/></a>
 		   <abbr title="site">Sitio Web / Email: </abbr> <span class='contact_data_item'><a href="{{company.site}}" target="_blank">{{company.site}}</a></span><br/>
 		   <abbr title="Fax">Fax: </abbr> <span class='contact_data_item'>{{company.fax1}}</span><br/>
 		  </address>
@@ -752,7 +745,7 @@
 			 <table data-ng-if="company.site !== ''" class="table col-sm-1 table-striped" style='width:50%; margin-top:10px;'>
               <tbody>
               <tr class='opportunity_open'>
-                  <td><a href="{{company.site}}"><img id='#web_thumbnail' src="thumbnails/A28196848.png" class='company_thumbnail' alt="thumbnail" /></a></td>
+                  <td><a href="{{company.site}}"><img id='#web_thumbnail' src="#" class='company_thumbnail' alt="thumbnail" /></a></td>
                   <td><a href="{{company.site}}">{{company.site}}</a></td>
                   
                   <td data-ng-if="company.site === ''"><a href="{{company.site}}"><button type="button" class="btn btn-info">No website</button></a></td>
@@ -893,21 +886,16 @@
               </div>
               <div class="panel-footer">
                 <div class="row">
-                  <!--
-                  <div class="col col-xs-4">Page 1 of 3
+                  
+                  <div class="col col-xs-4">P&aacute;gina <span id='pipe_page_num'>1</span> 
                   </div>
-                  <div class="col col-xs-8">
-                    <ul class="pagination hidden-xs pull-right">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                    </ul>
-                    <ul class="pagination visible-xs pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
+                  <div class="col col-xs-6">
+                    <ul class="pagination  pull-right">
+                        <li id='pipe_page_prev' style='font-size: 0.8em'><a href="javascript:pagination_pipe_prev();">Anterior</a></li>
+                        <li id='pipe_page_next' style='font-size: 0.8em'><a href="javascript:pagination_pipe_next();">Siguiente</a></li>
                     </ul>
                   </div>
-                  -->
+                  -
                 </div>
               </div>
             </div>
@@ -999,8 +987,8 @@ display_company = function (cif,handler){
 					item_data.site = 'http://' + item_data.site; 
 				}
 				
-			    get_near_businesses(item_data.x, item_data.y, function (data2)
-			   {
+			 get_near_businesses(item_data.x, item_data.y, function (data2)
+			 {
 				//console.log(item_data.x + "_____________" + item_data.y);
 		    	var scope = angular.element($("#company_view")).scope();
 		    	scope.$apply(function(){
