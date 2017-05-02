@@ -987,7 +987,7 @@ display_company = function (cif,handler){
 				var item_data = JSON.parse(data);
 				WOODA.cif = cif;
 				WOODA.company = item_data;
-				WOODA.company.cnae2009_4dig_codd = WOODA.company.cnae2009_4dig_codd.replace('Ã¡','á').replace('Ã³','ó').replace('Ã­','í')
+				WOODA.company.cnae2009_4dig_codd = WOODA.company.cnae2009_4dig_codd.replace('Ã¡','á').replace('Ã³','ó').replace('Ã­','í').replace('Ã©','é');
 				if (item_data.in_pipe === 'SI')
 				{
 		    		$('#company_add_pipe').css('display','none');$('#company_remove_pipe').css('display','block');					
