@@ -240,6 +240,10 @@ refresh_pipeline = function()
 			{
 					$('.logged_in').css('display','block');															
 					var item_list = JSON.parse(data);
+					for(var i = 0; i < item_length i++)
+					{
+						item_list[i].nombre_empresa = 	item_list[i].nombre_empresa.replace('Ã','Ñ');
+					}
 					// --- Pagination
 					if (item_list.data.length == 0)
 					{
