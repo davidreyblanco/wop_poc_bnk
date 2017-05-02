@@ -68,13 +68,19 @@ $v_2015 = $r['ACTIVO_NO_CORRIENTE_2015'] === 0 ? 'none' : 'block';
 	.tabla-charts
 	{
 		width: 90%;
-		font-size: 1em;
+		font-size: 0.9em;
      	
 	}
-	.data-cell
+
+	.datacell
 	{
 		text-align: right;
 	}
+	.data-year
+	{
+		text-align: center;
+	}
+
 	.tabla-charts-header-2
 	{
 		color: white;
@@ -95,9 +101,9 @@ $v_2015 = $r['ACTIVO_NO_CORRIENTE_2015'] === 0 ? 'none' : 'block';
 <table class='tabla-charts'>
   <tr style='width:500px;' class='tabla-charts-header'> <!-- FILA -->
     <th>ANALISIS DE BALANCE</th> <!-- CELDA CABECERA -->
-    <th >2013</th>
-    <th >2014</th>
-    <th >2015</th>
+    <th class='data-year'>2013</th>
+    <th class='data-year'>2014</th>
+    <th class='data-year'>2015</th>
   </tr>
   <tr>
     <td colspan='7' class='tabla-charts-header-2'>ACTIVO</td>
@@ -125,15 +131,15 @@ $v_2015 = $r['ACTIVO_NO_CORRIENTE_2015'] === 0 ? 'none' : 'block';
   </tr>
   <tr>
      <td>PASIVO CORRIENTE</td> 
-    <td class='datacell'><?=$rt['PASIVO_CORRIENTE_2013']?></td>
+    <td class='datacell' style='text-align:right'><?=$rt['PASIVO_CORRIENTE_2013']?></td>
     <td class='datacell'><?=$rt['PASIVO_CORRIENTE_2014']?></td>
     <td class='datacell'><?=$rt['PASIVO_CORRIENTE_2015']?></td>
   </tr>
    <tr class='tabla-charts-header'> <!-- FILA -->
     <th>CUENTA DE PERDIDAS Y GANANCIAS</th> 
-    <th >2013</th>
-    <th >2014</th>
-    <th >2015</th>
+    <th class='data-year'>2013</th>
+    <th class='data-year'>2014</th>
+    <th class='data-year'>2015</th>
   </tr>
     <tr>
      <td>VENTAS</td> 

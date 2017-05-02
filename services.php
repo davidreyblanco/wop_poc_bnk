@@ -122,6 +122,7 @@ switch($cmd)
 		$cif=$_GET['cif'];
 		$r_db = db_get_company_data($cif);
 		$r = json_encode($r_db);
+		db_record_event_log($user,EVENT_COMPANY_VIEW,0,$cif,"");
 		//$r = get_company_info($cif);
 		print($r);
 		break;
@@ -131,6 +132,7 @@ switch($cmd)
 			db_update_company_data_field($cif,'notes',$notes);
 			$res = array('result' => 'ok');
 			$r = json_encode($res);
+			db_record_event_log($user,EVENT_COMPANY_UPDATE,COMPANY_DATA_NOTES,$cif,"");
 			print($r);
 	break;
 	
@@ -149,22 +151,26 @@ switch($cmd)
 		{
 			$visit = ($visit === '_') ? '' : $visit;
 			db_update_company_data_field($cif,'visit',$visit);
+			db_record_event_log($user,EVENT_COMPANY_UPDATE,COMPANY_DATA_VISIT,$cif,$visit);
 		}
 		if ($pipe !== '')
 		{
 			$pipe = ($pipe === '_')? '' : $pipe;
 			db_update_company_data_field($cif,'in_pipe',$pipe,$user);
+			db_record_event_log($user,EVENT_COMPANY_UPDATE,COMPANY_DATA_CHANGE_PIPE,$cif,$pipe);
 		}
 		if ($motive !== '')
 		{
 			$motive = ($motive === '_') ? '' : $motive;
 			db_update_company_data_field($cif,'status_motive',$motive);
+			db_record_event_log($user,EVENT_COMPANY_UPDATE,COMPANY_DATA_MOTIVE,$cif,$pipe);
 		}
 		
 		if ($interest !== '')
 		{
 			$interest = ($interest === '_')? '' : $interest;
 			db_update_company_data_field($cif,'interest',$interest);
+			db_record_event_log($user,EVENT_COMPANY_UPDATE,COMPANY_DATA_INTEREST,$cif,$interest);
 		}
 		
 		$res = array('result' => 'ok');

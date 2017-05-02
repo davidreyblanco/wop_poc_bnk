@@ -1,5 +1,15 @@
 <?php
 
+define('EVENT_LOG_IN',1);
+define('EVENT_LOG_OUT',2);
+define('EVENT_COMPANY_VIEW',3);
+define('EVENT_COMPANY_UPDATE',4);
+define('COMPANY_DATA_NOTES',0);
+define('COMPANY_DATA_VISIT',1);
+define('COMPANY_DATA_CHANGE_PIPE',1);
+define('COMPANY_DATA_INTEREST',1);
+
+
 function get_suggestions($office)
 {
 	$payload = file_get_contents('data/data/payload/suggestions.json');
