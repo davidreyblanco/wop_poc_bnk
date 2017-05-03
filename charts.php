@@ -45,6 +45,32 @@ $v_2015 = $r['ACTIVO_NO_CORRIENTE_2015'] === 0 ? 'none' : 'block';
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if lte IE 8]>
+        @Styles.Render("~/Content/iecss")
+        <script src="~/Scripts/Libs/respond.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+      <script>
+        document.createElement('ng-include');
+        document.createElement('ng-pluralize');
+        document.createElement('ng-view');
+        document.createElement('ng:include');
+        document.createElement('ng:pluralize');
+        document.createElement('ng:view');
+      </script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+      <script src="~/Scripts/Libs/json2.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+        <script>
+        document.createElement('my-editor');
+        </script>
+    <![endif]-->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
