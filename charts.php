@@ -9,8 +9,8 @@ $r = db_get_company_data($cif);
 // Remove all dots
 foreach($r as $k => $v)
 {
-	$r[$k] = trim(str_replace(".","",$r[$k]));
-	$r[$k] = trim(str_replace(",",".",$r[$k]));
+//	$r[$k] = trim(str_replace(".","",$r[$k]));
+//	$r[$k] = trim(str_replace(",",".",$r[$k]));
 	
 }
 //print_r($r['RESULTADO_FINANCIERO_2009']);
@@ -27,7 +27,7 @@ foreach($r as $k => $v)
 	{
 		$r[$k] = 0;
 	}
-	$rt[$k] =number_format($r[$k]/100, 0, ',', '.');
+	$rt[$k] =number_format($r[$k], 0, ',', '.');
 //	$rt[$k] = money_format('%=*(#10.2n', $r[$k]);
 }
 if (array_key_exists('debug',$_GET)) {print_r($r);}
