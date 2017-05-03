@@ -264,6 +264,9 @@ $( document ).ready(function() {
 		    },
 	      type : 'spline'
 	    },
+	    legend:{
+	    	show: true
+	    },
 	    axis:
 	    {
 	     	x: {

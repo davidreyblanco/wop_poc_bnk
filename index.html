@@ -483,10 +483,10 @@
                   </thead>
                   <tbody>
                           <tr data-ng-repeat="x in suggestion_list" data-ng-click='show_company($event);' data-cif='{{x.CIF}}' class='suggestion_row' style='cursor:hand'>
-                            <td>{{x.nombre_empresa}}</td>
+                            <td>{{x.nombre_empresa.replace('Ã','Ñ').replace('Âº','º')}}</td>
                             <td class='suggestion_item'><span class='suggestion_item'>{{x.IPE}}</span></td>
-                            <td class='suggestion_item'><span class='suggestion_item'>{{x.calle}} {{x.n_mero}} {{x.resto}}</span></td>
-                            <td class='suggestion_item'><span class='suggestion_item'>{{x.municipio}}</span></td>
+                            <td class='suggestion_item'><span class='suggestion_item'>{{x.calle.replace('Ã','Ñ').replace('Âº','º')}} {{x.n_mero}} {{x.resto.replace('Ã','Ñ').replace('Âº','º')}}</span></td>
+                            <td class='suggestion_item'><span class='suggestion_item'>{{x.municipio.replace('Ã','Ñ').replace('Âº','º')}}</span></td>
                             <td class='suggestion_item'><span class='suggestion_item'>{{x.volumen_negocio}}</span></td>
                             <td class='suggestion_item'><span class='suggestion_item'>{{x.ScoreExport}}</span></td>
                             <td class='suggestion_item'><span class='suggestion_item'>{{x.Propension}}</span></td>
@@ -901,10 +901,10 @@
                   </thead>
                   <tbody>
                           <tr data-ng-repeat="x in pipeline" data-ng-click='show_company($event);' data-cif='{{x.CIF}}' style='cursor:hand'>
-                            <td>{{x.nombre_empresa}}</td>
+                            <td>{{x.nombre_empresa.replace('Ã','Ñ').replace('Âº','º')}}</td>
                             <td class='suggestion_item'><span>{{x.IPE}}</span></td>
-                            <td class='suggestion_item'><span>{{x.calle}} {{x.n_mero}} {{x.resto}}</span></td>
-                            <td class='suggestion_item'><span>{{x.municipio}}</span></td>
+                            <td class='suggestion_item'><span>{{x.calle.replace('Ã','Ñ').replace('Âº','º')}} {{x.n_mero.replace('Ã','Ñ').replace('Âº','º')}} {{x.resto.replace('Ã','Ñ').replace('Âº','º')}}</span></td>
+                            <td class='suggestion_item'><span>{{x.municipio.replace('Ã','Ñ')}}</span></td>
                             <td class='suggestion_item'><span>{{x.visit}}</span></td>
                             <td class='suggestion_item'><span>{{x.interest}}</span></td>
                             <td class='suggestion_item'><span>{{x.status_motive}}</span></td>
@@ -991,8 +991,13 @@ display_company = function (cif,handler){
 				var item_data = JSON.parse(data);
 				WOODA.cif = cif;
 				WOODA.company = item_data;
-
 				WOODA.company.nombre_empresa = WOODA.company.nombre_empresa.replace('Ã','Ñ');
+				WOODA.company.calle = WOODA.company.calle.replace('Ã','Ñ').replace('Âº','º');
+				WOODA.company.numero = WOODA.company.n_mero.replace('Ã','Ñ').replace('Âº','º');
+				WOODA.company.resto = WOODA.company.resto.replace('Ã','Ñ').replace('Âº','º');
+				
+				// ----------------------------------------
+				
 				WOODA.company.cnae2009_4dig_codd = WOODA.company.cnae2009_4dig_codd.replace('Ã¡','á').replace('Ã³','ó').replace('Ã­','í').replace('Ã©','é');
 				if (item_data.in_pipe === 'SI')
 				{
