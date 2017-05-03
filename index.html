@@ -742,8 +742,12 @@
           </div>          
           <div id='company_charts_view' class='company_contents'>
 			<div class='row'>			
+			<!--
 			<iframe id='target_charts_iframe' style='border:0px;height:100%;' class='col-sm-12' src='#' scrolling="no" onload='resizeIframe(this)'></iframe>
+			-->
+			<iframe id='target_charts_iframe' style='border:0px;width:100%;height:520px' class='col-sm-12' src='#' scrolling="no"'></iframe>
 			</div>
+			
 
           </div>
 
@@ -1004,14 +1008,14 @@ display_company = function (cif,handler){
 			  	$('#company_remove_pipe').unbind('click').bind('click',function(){remove_from_pipe();});
 
 			  	var uri = 'charts.php?cif=' + cif;
-				$('#target_charts_iframe').attr('src',uri);
-				var uri_timeline = 'timeline2.php?cif=' + cif;
-				$('#target_timeline_iframe').attr('src',uri_timeline);
+				  $('#target_charts_iframe').attr('src',uri);
+				  var uri_timeline = 'timeline2.php?cif=' + cif;
+				  $('#target_timeline_iframe').attr('src',uri_timeline);
 		
 		
 				// Fix url if it does not have protocol ...
 		
-				if (item_data !== undefined && item_data.site != undefined && item_data.site != '' && !item_data.site.includes("http"))
+				if (item_data !== undefined && item_data.site != undefined && item_data.site != '' && item_data.site.indexOf("http") !== -1)
 				{
 					item_data.site = 'http://' + item_data.site; 
 				}
