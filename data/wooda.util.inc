@@ -80,7 +80,7 @@ function db_get_company_data($cif)
 //export_filter_criteria=0_0,1_1,2_2,3_3,4_4
 //propension_filter_criteria=1_1,2_2,3_3,4_4,5_5
 // db_get_company_list($id_office,false,$ol,$oc,$ifc,$efc,$pfc);
-function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$ifc= '',$efc = '',$pfc = '',$vc = '',$ic = '',$namefc = '',$user = '',$page_size = 100, $page_count = 0,$is_count = false)
+function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$ifc= '',$efc = '',$pfc = '',$vc = '',$ic = '',$namefc = '',$user = '',$page_size = 100, $page_count = 0,$is_count = false,$debug = false)
 {
 	$result = array();
 	$link = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -242,7 +242,7 @@ function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$i
 			
 			$query .= ';';
 	
-//			print($query);exit;
+			if ($debug) {print($query);exit;}
 			$res_db = $link->query($query);
 
 			if ($is_count === true)

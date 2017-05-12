@@ -59,8 +59,9 @@ switch($cmd)
 		$page_id = $_GET['page_id'];
 		$vc = '';//$_GET['visited_criteria'];
 		$ic = '';//$_GET['interes_criteria'];
-				
-		$r_db = db_get_company_list($id_office,false,$ol,$oc,$ifc,$efc,$pfc,$vc,$ic,$namefc,$user,50,$page_id,false);
+		$debug = array_key_exists('debug',$_GET);
+		
+		$r_db = db_get_company_list($id_office,false,$ol,$oc,$ifc,$efc,$pfc,$vc,$ic,$namefc,$user,50,$page_id,false,$debug);
 		$record_count = db_get_company_list($id_office,false,$ol,$oc,$ifc,$efc,$pfc,$vc,$ic,$namefc,$user,50,$page_id,true);
 		
 		//order_list=P&order_criteria=A
@@ -103,8 +104,9 @@ switch($cmd)
 		$ic = $_GET['interes_criteria'];
 		$namefc = $_GET['name_filter'];
 		$page_id = $_GET['page_id'];
+		$debug = array_key_exists('debug',$_GET);
 		
-		$r_db = db_get_company_list($id_office,true,$ol,$oc,$ifc,$efc,$pfc,$vc,$ic,$namefc,$user,50,$page_id,false);
+		$r_db = db_get_company_list($id_office,true,$ol,$oc,$ifc,$efc,$pfc,$vc,$ic,$namefc,$user,50,$page_id,false,$debug);
 		$record_count = db_get_company_list($id_office,true,$ol,$oc,$ifc,$efc,$pfc,$vc,$ic,$namefc,$user,50,$page_id,true);
 
 		//$r_db = db_get_company_list($id_office,true);
