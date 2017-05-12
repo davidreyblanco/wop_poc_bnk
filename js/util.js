@@ -258,7 +258,7 @@ refresh_pipeline = function()
 				    	var scope = angular.element($("#pipeline_view")).scope();
 				    	scope.$apply(function(){
 				    		
-				    		scope.pipeline = item_list.data.slice(0,100);
+				    		scope.pipeline = item_list.data;
 				    		
 				    		setTimeout(function () 
 						    {
