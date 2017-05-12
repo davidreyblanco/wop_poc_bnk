@@ -301,7 +301,7 @@ refresh_suggestions = function()
 			
 			var ipe_filter_criteria = "1_" + ($('#modalAddSuggestion #ipe_1').is(":checked") ? 1:0) + "," + "2_" + ($('#modalAddSuggestion #ipe_2').is(":checked")?1:0) + "," + "3_" + ($('#modalAddSuggestion #ipe_3').is(":checked")?1:0) ;
 			var export_filter_criteria = "0_" + ($('#modalAddSuggestion #export_0').is(":checked") ? 1:0) + "," + "1_" + ($('#modalAddSuggestion #export_1').is(":checked") ? 1:0) + "," + "2_" + ($('#modalAddSuggestion #export_2').is(":checked") ? 1:0)+ "," + "3_" + ($('#modalAddSuggestion #export_3').is(":checked") ? 1:0)+ "," + "4_" + ($('#modalAddSuggestion #export_4').is(":checked") ? 1:0);
-			var propension_filter_criteria = "1_" + ($('#modalAddSuggestion #propension_1').is(":checked") ? 1:0) + "," + "2_" + ($('#modalAddSuggestion #propension_2').is(":checked") ? 1:0) + "," + "3_" + ($('#modalAddSuggestion #propension_3').is(":checked") ? 1:0);
+			var propension_filter_criteria = "1_" + ($('#modalAddSuggestion #propension_1').is(":checked") ? 1:0) + "," + "2_" + ($('#modalAddSuggestion #propension_2').is(":checked") ? 1:0) + "," + "3_" + ($('#modalAddSuggestion #propension_3').is(":checked") ? 1:0) + "4_" + ($('#modalAddSuggestion #propension_4').is(":checked") ? 1:0);
 			var name_filter = $('#modalAddSuggestion #filtro_nombre').val().trim();
 			
 			$('#filter_suggested_pipe').button('loading');
