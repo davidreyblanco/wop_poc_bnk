@@ -88,11 +88,20 @@ function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$i
 	{
 		if ($is_count)
 		{
-			$query = 'SELECT count(*) as number from companies where id_office="'.$id_office.'"';
+			$query = 'SELECT count(*) as number from companies';
 		}
 		else
 		{
-			$query = 'SELECT *,if(volumen_negocio="<700k",1,if(volumen_negocio="700k-1.200K",2,if(volumen_negocio="1.200k-3.000k",3,4))) as volumen_negocio_clases from companies where id_office="'.$id_office.'"';
+			$query = 'SELECT *,if(volumen_negocio="<700k",1,if(volumen_negocio="700k-1.200K",2,if(volumen_negocio="1.200k-3.000k",3,4))) as volumen_negocio_clases from companies';
+		}
+		
+		if (FILTER_BY_OFFICE_ENABLED == true)
+		{
+			$query .=' WHERE id_office="'.$id_office.'"';
+		}
+		else
+		{
+			$query .=' WHERE true ';
 		}
 		
 		if ($in_pipeline)
