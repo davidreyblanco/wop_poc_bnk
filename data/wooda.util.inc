@@ -95,9 +95,14 @@ function db_get_company_list($id_office,$in_pipeline = false,$ol = '',$oc= '',$i
 			$query = 'SELECT *,if(volumen_negocio="<700k",1,if(volumen_negocio="700k-1.200K",2,if(volumen_negocio="1.200k-3.000k",3,4))) as volumen_negocio_clases from companies';
 		}
 		
-		if (FILTER_BY_OFFICE_ENABLED == true)
+		if ($in_pipeline || FILTER_BY_OFFICE_ENABLED == true)
 		{
 			$query .=' WHERE id_office="'.$id_office.'"';
+			/*$user = trim($user);
+			if ($in_pipeline && $user !== '')
+			{
+				$query .=' AND user="'.$user.'"';
+			}*/
 		}
 		else
 		{
